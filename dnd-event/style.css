@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap');
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+}
+
+.drop-area{
+    border-radius: 12px;
+    border: 1px dashed var(--Txt-accent, #4876F9);
+    background: var(--BG, #FFF);
+
+    padding: 40px 90px;
+
+    width: 450px;
+}
+
+.drop-area.highlight{
+    background-color: #EFF2FF;
+}
+
+.drop-form > input{
+    display: none;
+}
+
+.drop-form > .drop-par{
+    color: var(--Txt-primary, #1C1C1C);
+    font-feature-settings: 'cv11' on, 'cv01' on, 'ss01' on;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+
+    text-align: center;
+}
+
+.drop-form > .drop-par > .drop-button{
+    color: #4876F9;
+    cursor: pointer;
+}
+
+.drop-form > .drop-par > .drop-button:hover{
+    opacity: .7
+}
+
+#gallery{
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    width: 100%;
+}
+
+#gallery > img{
+    width: 20%; 
+}   
+
+
+
+/* <ul class="dnd_refs">
+            <li class="dnd_item">
+                <span class="marker"></span>
+                <p class="text">Test 1</p>
+            </li>
+            <li class="dnd_item">
+                <span class="marker"></span>
+                <p class="text">Test 2</p>
+            </li>
+            <li class="dnd_item">
+                <span class="marker"></span>
+                <p class="text">Test 3</p>
+            </li>
+            <li class="dnd_item">
+                <span class="marker"></span>
+                <p class="text">Test 4</p>
+            </li>
+            <li class="dnd_item">
+                <span class="marker"></span>
+                <p class="text">Test 5</p>
+            </li>
+        </ul>
+
+        <ul class="dnd_container">
+            
+        </ul> */
+
+
+.dnd_refs{
+    border-radius: 12px;
+    border: 1px solid var(--Txt-accent, #4876F9);
+    background: var(--BG, #FFF);
+    width: 174px;
+
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin: 0;
+    padding: 0;
+
+    padding: 28px;
+
+    user-select: none;
+}
+
+.dnd_item{
+    border-radius: 12px;
+    border: 1px solid var(--Txt-accent, #85d389);
+
+    padding: 6px 40px;
+
+    width: 100px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    user-select: none;
+
+    gap: 16px;
+}
+
+.marker{
+    width: 8px;
+    height: 8px;
+    
+    border-radius: 50%;
+
+    background-color: #32BD7A;
+
+    display: block;
+}
+
+
+.text{
+    color: var(--Txt-primary, #1C1C1C);
+font-feature-settings: 'cv11' on, 'cv01' on, 'ss01' on;
+text-overflow: ellipsis;
+white-space: nowrap;
+font-family: Nunito;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 26px; /* 125% */
+
+margin: 0;
+}
+
+
+.dnd_container{
+    border-radius: 12px;
+    border: 1px dashed var(--Txt-accent, #4876F9);
+    background: var(--BG, #EFF2FF);
+
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin: 0;
+    padding: 0;
+
+    padding: 28px;
+
+    width: 174px;
+    box-sizing: content-box;
+
+    margin-top: 32px;
+}
+
+.dnd_container .marker{
+    background-color: #FA4E4E;
+}
+
+.dnd_container .dnd_item{
+    border-color: #FDB8B8;
+}
+
+.dragging{
+    opacity: .5;
+}
+
+h1{
+    font-family: Nunito;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px; 
+    text-align: center;
+    margin: 0;
+}
+
+
+.git {
+    position: absolute;
+    bottom: 40px;
+    left: calc(50% - 82.5px);
+
+    width: 165px;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.git>p {
+    margin: 0;
+    padding: 10px;
+
+    line-height: 43px;
+    font-family: Nunito;
+}
+
+.git>* {
+    display: block;
+    background-color: white;
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.10);
+    border-radius: 12px;
+
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.git>div {
+    width: 60px;
+    cursor: pointer;
+}
