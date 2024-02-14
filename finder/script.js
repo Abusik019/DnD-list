@@ -66,9 +66,11 @@ function generateFolderStructure(rootFolder = 'Root', depth = 3, maxChildren = 4
 
 
 const   folderStructure = document.querySelector('.folder_structure'),
-        folders = generateFolderStructure('Root', 10, 4);
+        folders = generateFolderStructure('Root', 10, 4),
+        folderPath = document.querySelector('.folder_path'),
+        childrenFolders = document.querySelector('.children_folders');
         
-
+        
 function createFolderView(data, parentElement){
     const ul = document.createElement('ul');
     parentElement.appendChild(ul);
@@ -78,7 +80,7 @@ function createFolderView(data, parentElement){
         ul.appendChild(li);
 
         const folderName = document.createElement('span');
-        folderName.style.display = 'inline-block'
+        folderName.style.display = 'inline-block';
 
         if(child.children.length > 0){
             const openArrow = document.createElement('i');
@@ -89,25 +91,29 @@ function createFolderView(data, parentElement){
 
         folderName.innerHTML += child.name.split('/').pop();
         folderName.className = 'folder';
+
+        folderName.addEventListener('dblclick', (e) => {
+            folderPath.innerText  = child.name.split('/').join(' / ');
+            folderName.classList.toggle('active');
+
+            child.children.forEach(children => {
+                const li = document.createElement('li');
+                li.textContent  = children.name;
+                childrenFolders.appendChild(li);
+            })
+            
+            parentElement.querySelectorAll('.active').forEach(item => {
+                if(item != e.target){
+                    item.classList.remove('active');
+                }
+            })
+        })
       
         li.appendChild(folderName);
 
         if(child.children.length > 0){
             createFolderView(child, li);
         }
-
-        const arrows = document.querySelectorAll('.open_arrow');
-        arrows.forEach(arrow => {
-            arrow.addEventListener('click', () => {
-                if(folderStructure.firstElementChild.offsetHeight > folderStructure.offsetHeight){
-                    aside.style.overflowY = 'scroll';
-                    folderStructure.style.overflow = 'hidden';
-                } else{
-                    aside.style.overflowY = 'visible';
-                    folderStructure.style.overflow = 'visible';
-                }
-            });
-        });
 
         li.querySelector('i')?.addEventListener('click', () => {
             const sublist = li.querySelector('ul'),
@@ -118,7 +124,7 @@ function createFolderView(data, parentElement){
             }
 
             if(sublist){
-                sublist.style.display = (sublist.style.display === 'none') ? 'block' : 'none';
+                sublist.style.display = (sublist.style.display === 'block') ? 'none' : 'block';
                 arrow.style.transform = (arrow.style.transform === 'rotateZ(0deg)') ? 'rotateZ(90deg)' : 'rotateZ(0deg)';
             }
         })
@@ -130,14 +136,13 @@ const createBtn = document.getElementById('create');
 
 console.log(folders)
 
-createBtn.addEventListener('click', () => {
-    createFolderView(folders, folderStructure)
-    if(folderStructure.firstElementChild){
-        if(folderStructure.firstElementChild.offsetHeight > folderStructure.offsetHeight){
-            aside.style.overflowY = 'scroll';
-            folderStructure.style.overflow = 'hidden';
-        }
-    }
+createBtn.addEventListener('click', (e) => {
+    createFolderView(folders, folderStructure);
+    e.target.remove()
+    document.querySelector('.folders-names').style.display = 'flex';
 });
 
 
+
+// обработать двойной клик по папке, вывовдить в main полный путь к папке, присвоить класс
+// вывести все вложенные в нее папки
